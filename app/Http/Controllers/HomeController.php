@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\sendMail;
 use App\Models\demande;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -30,12 +31,16 @@ class HomeController extends Controller
 
     public function envoi(Request $request){
         $data = new demande;
+        $user = User::where('usertype', 1)->get();
 
         $data->user_id = Auth::id();
         $data->demande = $request->demande;
         $data->save();
 
-        Mail::to('ndiassembeguere@gmail.com')->send(new sendMail($data));
+        foreach($user as $users){
+            Mail::to($users->email)->send(new sendMail($data));
+        }
+
         return redirect()->back()->with('message-sent', 'Envoyé avec succés');
     }
 
