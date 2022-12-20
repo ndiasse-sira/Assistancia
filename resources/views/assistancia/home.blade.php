@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Gp Bootstrap Template - Index</title>
+  <title>Assistancia</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,8 +28,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
   <!-- =======================================================
   * Template Name: Gp - v4.9.1
   * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
@@ -40,8 +38,8 @@
 
 <body>
 
-   <!-- ======= Header ======= -->
-   <header id="header" class="fixed-top ">
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-lg-between" >
 
 
@@ -71,17 +69,16 @@
   </header><!-- End Header -->
 
 
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center justify-content-center">
 
 
     <div class="container" data-aos="fade-up">
 
-
-
         <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150" style="padding: 70px;">
             <div class="col-xl-6 col-lg-8">
-                <h1 class="logo me-auto me-lg-0"><a href="#about">USER PANEL<span></span></a></h1>
+                <h1 class="logo me-auto me-lg-0"><a href="#about">ADMIN PANEL<span></span></a></h1>
             </div>
         </div>
 
@@ -96,16 +93,21 @@
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
             <i class="ri-store-line"></i>
-            <h3><a href="#">Accueil</a></h3>
+            <h3><a href="#about">Accueil</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
             <i class="ri-bar-chart-box-line"></i>
-            <h3><a href="{{ route('demande') }}"> Demandes </a></h3>
+            <h3><a href="{{ route('detail') }}"> Details </a></h3>
           </div>
         </div>
-
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <i class="ri-calendar-todo-line"></i>
+            <h3><a href="{{ route('bord') }} ">Tableau de Bord</a></h3>
+          </div>
+        </div>
       </div>
     </div>
   </section><!-- End Hero -->
@@ -113,46 +115,108 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
 
-
-
-    <section style="padding-top: 60px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card">
-                        <div class="card-header" style="color: black;">
-                            Passez votre demande
-                        </div>
-                        <div class="card-body">
-                            @if(Session::get('message-sent'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ Session::get('message-sent') }}
-                                </div>
-                            @endif
-                            <form action="{{ route('envoidemande') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group" style="padding: 10px;">
-                                    <label for="demande">Demande</label>
-                                    <textarea name="demande" class="form-control" cols="30" rows="10"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary" style="color:black; margin-left:220px;">Envoyer</button>
-                            </form>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ route('status') }}" class="alert alert-success" style="margin-left: 44%; padding-top:15px;"> Status </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
+            <h1>Assistencia</h1>
+            <hr>
+            <h3>Gestion de vos réclamations.</h3>
+            <p class="fst-italic">
+              Envoyez-nous vos demandes dans la page Demandes.
+            </p>
+            <p>
+                Toutes vos demandes seront traitées et répondues dans les plus brefs délais.
+            </p>
+          </div>
         </div>
-    </section>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= Features Section ======= -->
+
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>Check our Services</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4><a href="">Accueil</a></h4>
+              <p>Pour tout savoir sur Assistencia, consultez la page d'accueil </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h4><a href="">Demandes</a></h4>
+              <p>Passez vos demandes sur cette partie.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4><a href="">Tableau de bord</a></h4>
+              <p>Pour consulter toutes les demandes, vueillez passer ici. </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="text-center">
+          <h3>Demande</h3>
+          <p> Formulez vos demandes en remplissant un formulaire dans cette partie. <hr>
+          <a class="cta-btn" href="#">Demandes</a>
+        </div>
+
+      </div>
+    </section><!-- End Cta Section -->
 
 
 
 
-
-  </main><!-- End #main -->
 
  <!-- ======= Services Section ======= -->
  <section id="services" class="services">
@@ -164,7 +228,7 @@
       </div>
 
       <div class="row">
-        <div class="col-lg-6 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
           <div class="icon-box">
             <div class="icon"><i class="bx bxl-dribbble"></i></div>
             <h4><a href="">Accueil</a></h4>
@@ -172,16 +236,20 @@
           </div>
         </div>
 
-
-        <div class="col-lg-6 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Demandes</a></h4>
-              <p>Passez vos demandes sur cette partie.</p>
-            </div>
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-file"></i></div>
+            <h4><a href="">Demandes</a></h4>
+            <p>Passez vos demandes sur cette partie.</p>
           </div>
+        </div>
 
-
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-tachometer"></i></div>
+            <h4><a href="">Tableau de bord</a></h4>
+            <p>Pour consulter toutes les demandes, vueillez passer ici. </p>
+          </div>
         </div>
 
       </div>

@@ -38,7 +38,10 @@ Route::post('/envoidemande', [HomeController::class, 'envoi'])->name('envoideman
 Route::get('/status', [HomeController::class, 'status'])->name('status');
 
 Route::get('/details', [AdminController::class, 'details'])->name('details');
+Route::get('/detail', [AdminController::class, 'detail'])->name('detail');
 
 Route::get('/update/{id}', [AdminController::class, 'update'])->name('update');
+Route::get('/bord', [AdminController::class, 'bord'])->name('bord');
+Route::get('/tableau', [AdminController::class, 'tableau'])->name('tableau');
 
 Route::post('/modifier/{id}', [AdminController::class, 'modifier'])->name('modifier');

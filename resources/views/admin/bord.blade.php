@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Gp Bootstrap Template - Index</title>
+  <title>Assistancia</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,8 +29,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
   <!-- =======================================================
   * Template Name: Gp - v4.9.1
   * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
@@ -40,8 +39,8 @@
 
 <body>
 
-   <!-- ======= Header ======= -->
-   <header id="header" class="fixed-top ">
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-lg-between" >
 
 
@@ -71,6 +70,7 @@
   </header><!-- End Header -->
 
 
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center justify-content-center">
 
@@ -81,7 +81,7 @@
 
         <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150" style="padding: 70px;">
             <div class="col-xl-6 col-lg-8">
-                <h1 class="logo me-auto me-lg-0"><a href="#about">USER PANEL<span></span></a></h1>
+                <h1 class="logo me-auto me-lg-0"><a href="#about">Assistencia<span></span></a></h1>
             </div>
         </div>
 
@@ -96,52 +96,76 @@
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
             <i class="ri-store-line"></i>
-            <h3><a href="#">Accueil</a></h3>
+            <h3><a href="">Accueil</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
             <i class="ri-bar-chart-box-line"></i>
-            <h3><a href="{{ route('demande') }}"> Demandes </a></h3>
+            <h3><a href="{{ route('detail') }}"> Détails </a></h3>
           </div>
         </div>
-
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <i class="ri-calendar-todo-line"></i>
+            <h3><a href="{{route('bord')}}">Tableau de Bord</a></h3>
+          </div>
+        </div>
       </div>
     </div>
   </section><!-- End Hero -->
 
   <main id="main">
-
-    <!-- ======= About Section ======= -->
-
-
-
     <section style="padding-top: 60px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-header" style="color: black;">
-                            Passez votre demande
+                            Nombre de demandes traitées par les administrateurs
                         </div>
-                        <div class="card-body">
-                            @if(Session::get('message-sent'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ Session::get('message-sent') }}
-                                </div>
-                            @endif
-                            <form action="{{ route('envoidemande') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group" style="padding: 10px;">
-                                    <label for="demande">Demande</label>
-                                    <textarea name="demande" class="form-control" cols="30" rows="10"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary" style="color:black; margin-left:220px;">Envoyer</button>
-                            </form>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ route('status') }}" class="alert alert-success" style="margin-left: 44%; padding-top:15px;"> Status </a>
-                        </div>
+                        <div class="table-responsive-sm">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">N°</th>
+                                        <th scope="col">Nom Admin</th>
+                                        <th scope="col">Rejetée,</th>
+                                        <th scope="col">En attente</th>
+                                        <th scope="col"> En cours de traitement</th>
+                                        <th scope="col">Traitée </th>
+                                        <th scope="col"> Total </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $demande)
+
+                                    <tr class="">
+                                        <td scope="row">{{$loop->index+1}}</td>
+                                        <td>{{ $demande->name }}</td>
+                                        <td>{{DB::table('demandes')->where('status','Rejetée')->where('nom_admin',$demande->name)->count()}}</td>
+                                        <td>
+                                            {{DB::table('demandes')->where('status','En attente')->count()}}
+
+
+                                        </td>
+                                        <td>
+                                            {{DB::table('demandes')->where('status','En cours de traitement')->where('nom_admin',$demande->name)->count()}}
+
+
+                                        </td>
+                                        <td>
+                                            {{DB::table('demandes')->where('status','Traitée')->where('nom_admin',$demande->name)->count()}}
+
+
+                                        </td>
+                                        <td>{{DB::table('demandes')->where('updated_at', '>=', Carbon\Carbon::now()->startOfMonth())->where('nom_admin',$demande->name)->count()}}</td>
+
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
                     </div>
                 </div>
             </div>
@@ -151,11 +175,11 @@
 
 
 
-
   </main><!-- End #main -->
 
- <!-- ======= Services Section ======= -->
- <section id="services" class="services">
+  <!-- ======= Footer ======= -->
+   <!-- ======= Services Section ======= -->
+   <section id="services" class="services">
     <div class="container" data-aos="fade-up">
 
       <div class="section-title">
@@ -164,7 +188,7 @@
       </div>
 
       <div class="row">
-        <div class="col-lg-6 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
           <div class="icon-box">
             <div class="icon"><i class="bx bxl-dribbble"></i></div>
             <h4><a href="">Accueil</a></h4>
@@ -172,16 +196,20 @@
           </div>
         </div>
 
-
-        <div class="col-lg-6 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Demandes</a></h4>
-              <p>Passez vos demandes sur cette partie.</p>
-            </div>
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-file"></i></div>
+            <h4><a href="">Demandes</a></h4>
+            <p>Passez vos demandes sur cette partie.</p>
           </div>
+        </div>
 
-
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-tachometer"></i></div>
+            <h4><a href="">Tableau de bord</a></h4>
+            <p>Pour consulter toutes les demandes, vueillez passer ici. </p>
+          </div>
         </div>
 
       </div>
@@ -262,3 +290,5 @@
 </body>
 
 </html>
+
+
